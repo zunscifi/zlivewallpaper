@@ -26,19 +26,6 @@
             </div>
         </section>
 
-        <section id="image-slider" class="py-20 bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="overflow-hidden">
-                    <div class="flex transition-transform duration-500 ease-in-out space-x-4" id="slider">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczNgWSkrS32tOHKMFZI1IzolCzQ8YtRmLKoJQBIqDk5bbJwufx75XX_hS0sZfrYHdtoscixRb_AIFsbByQAdDYSOvu8ugmyyXZXdiO33oscNrxnQURCS4-OCtRmSg1TpF9XTvC_DFsvV0Q_sjURwwuQ=w2880-h1800-s-no-gm?authuser=2" alt="Wallpaper 1" class="w-64 h-48 object-cover rounded-lg transition-all duration-300">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczOSlY__GiGNo5BWSp2YHexsEMRDEW8TKTX3-mFuom55MRsJn86QiQG8kire5fFRY6ekVPexLtYWyOg6YiyEgs6w65dVf3RBtOpV5lTbSo0xcQ_sxyEdDR-axkmgkSps4WiKGBxYlOuvNQR8jNkKmdI=w2880-h1800-s-no-gm?authuser=2" alt="Wallpaper 2" class="w-64 h-48 object-cover rounded-lg transition-all duration-300">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczOyPzM8XybF3_y8Ld3PxGus7Ab5wVJM_tzNW-iPKvrggFe_VlHPp4iSo7xqbU5-8oSIBj25IcfHkB6rYi6YDzQPi33bSEOq57BfJNCCMrG7JJVgXo_di_-xNbDpZx83OZi7Ta2gZb5-4Lei4rhijO0=w2880-h1800-s-no-gm?authuser=2" alt="Wallpaper 3" class="w-64 h-48 object-cover rounded-lg transition-all duration-300">
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczPTwMjdf1k2xG1SLwWzj18NN1u0gJKBaK_l8xoB5NwZuBakTHJjtk54qQV3pzO1bT-V-Oyuv6yzPG4-rmxMTmRvaZYcjt9QgIUKNhLsht-Nb8s1lIeSKzq5VyEsee12jQygPV-UkNwshNkoGX_SbfQ=w2880-h1800-s-no-gm?authuser=2" alt="Wallpaper 4" class="w-64 h-48 object-cover rounded-lg transition-all duration-300">
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="features" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Amazing Features</h2>
@@ -99,53 +86,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        const slider = document.getElementById('slider');
-        let currentIndex = 0;
-        const totalSlides = slider.children.length;
-        const slideWidth = 256; // Width of each slide (16rem = 256px)
-
-        function setupInfiniteScroll() {
-            const clonedSlides = Array.from(slider.children).map(slide => slide.cloneNode(true));
-            clonedSlides.forEach(slide => slider.appendChild(slide));
-        }
-
-        function nextSlide() {
-            currentIndex++;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            const offset = -currentIndex * slideWidth;
-            slider.style.transform = `translateX(${offset}px)`;
-
-            if (currentIndex >= totalSlides) {
-                setTimeout(() => {
-                    slider.style.transition = 'none';
-                    currentIndex = 0;
-                    updateSlider();
-                    setTimeout(() => {
-                        slider.style.transition = 'transform 500ms ease-in-out';
-                    }, 50);
-                }, 500);
-            }
-
-            // Update center image size
-            const slides = slider.children;
-            for (let i = 0; i < slides.length; i++) {
-                if (i === currentIndex + 1 || (currentIndex === totalSlides - 1 && i === 1)) {
-                    slides[i].classList.add('w-80', 'h-60');
-                    slides[i].classList.remove('w-64', 'h-48');
-                } else {
-                    slides[i].classList.add('w-64', 'h-48');
-                    slides[i].classList.remove('w-80', 'h-60');
-                }
-            }
-        }
-
-        setupInfiniteScroll();
-        setInterval(nextSlide, 3000);
-    </script>
 </body>
 </html>
